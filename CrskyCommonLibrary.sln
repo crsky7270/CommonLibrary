@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crsky.Common", "CrskyCommonLibrary\Crsky.Common.csproj", "{F74ED453-025A-4B9E-AC76-62CE40761AB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crsky.Utility", "CrskyCommonLibrary\Crsky.Utility.csproj", "{F74ED453-025A-4B9E-AC76-62CE40761AB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{49FAF1D4-5B8E-4825-ACC8-39EEDC837E28}"
 EndProject
