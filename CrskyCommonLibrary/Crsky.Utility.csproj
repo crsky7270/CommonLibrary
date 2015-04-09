@@ -43,12 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\CommonHelper.cs" />
-    <Compile Include="Helper\ConvertHelper.cs" />
+    <Compile Include="Helper\CommonHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\ConvertHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helper\CookieRelated.cs" />
-    <Compile Include="Helper\CryptogramHelper.cs" />
+    <Compile Include="Helper\CryptogramHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helper\DirectoryHelper.cs" />
-    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\EnumHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\FTPHelper.cs" />
     <Compile Include="Helper\IpHelper.cs" />
@@ -57,6 +65,9 @@
     <Compile Include="Helper\PathHelper.cs" />
     <Compile Include="Helper\RandomHelper.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
+    <Compile Include="Helper\RegexHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helper\RequestHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="Helper\UrlHelper.cs" />
@@ -64,7 +75,6 @@
     <Compile Include="Helper\WebHelper.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helper\RegexHelper.cs" />
     <Compile Include="Helper\ValidationHelper.cs" />
   </ItemGroup>
   <ItemGroup />
