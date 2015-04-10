@@ -11,6 +11,7 @@ namespace Crsky.Utility.Helper
 {
    /// <summary>
    /// 通用函数集合[凡无法归入专项集合中的通用函数，均放入此处]
+   /// 该类已经经过优化。时间:2015-04-10
    /// </summary>
    public class CommonHelper
    {
