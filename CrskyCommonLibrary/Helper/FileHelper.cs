@@ -53,14 +53,7 @@ namespace Crsky.Utility.Helper
 
          try
          {
-            if (isSearchChild)
-            {
-               return Directory.GetFiles(directoryPath, searchPattern, SearchOption.AllDirectories);
-            }
-            else
-            {
-               return Directory.GetFiles(directoryPath, searchPattern, SearchOption.TopDirectoryOnly);
-            }
+            return Directory.GetFiles(directoryPath, searchPattern, isSearchChild ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
          }
          catch (IOException ex)
          {

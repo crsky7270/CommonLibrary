@@ -22,11 +22,9 @@ namespace Crsky.Utility.Helper
       /// <returns>字符串的字节长度(1个汉字为2字节)，输入字符串IsNullOrEmpty，则返回0</returns>
       public static int GetLength(string str)
       {
-         if (ValidationHelper.IsNullOrEmpty(str))
-            return 0;
-
-         return Encoding.UTF8.GetByteCount(str);
+         return ValidationHelper.IsNullOrEmpty(str) ? 0 : Encoding.UTF8.GetByteCount(str);
       }
+
       #endregion
 
       #region 从字符串的相应位置截取指定字节长度的字符串
@@ -39,13 +37,9 @@ namespace Crsky.Utility.Helper
       public static string Substring(string str, int length)
       {
          Byte[] tempStr = Encoding.UTF8.GetBytes(str);
-         if (tempStr.Length > length)
-         {
-            return Encoding.UTF8.GetString(tempStr, 0, length);
-         }
-         else
-            return str;
+         return tempStr.Length > length ? Encoding.UTF8.GetString(tempStr, 0, length) : str;
       }
+
       /// <summary>
       /// 从字符串的指定位置截取指定长度的子字符串
       /// </summary>
@@ -83,17 +77,14 @@ namespace Crsky.Utility.Helper
             {
                return "";
             }
+            if (length + startIndex > 0)
+            {
+               length = length + startIndex;
+               startIndex = 0;
+            }
             else
             {
-               if (length + startIndex > 0)
-               {
-                  length = length + startIndex;
-                  startIndex = 0;
-               }
-               else
-               {
-                  return "";
-               }
+               return "";
             }
          }
          if (tempStr.Length - startIndex < length)
@@ -126,20 +117,18 @@ namespace Crsky.Utility.Helper
       public static int GetIndexInArray(string searchStr, string[] arrStr, bool caseInsensetive)
       {
          int retValue = -1;
-         if (!string.IsNullOrEmpty(searchStr) && arrStr.Length > 0)
+         if (string.IsNullOrEmpty(searchStr) || arrStr.Length <= 0) return retValue;
+         for (int i = 0; i < arrStr.Length; i++)
          {
-            for (int i = 0; i < arrStr.Length; i++)
+            if (caseInsensetive)
             {
-               if (caseInsensetive)
-               {
-                  if (searchStr == arrStr[i])
-                     retValue = i;
-               }
-               else
-               {
-                  if (searchStr.ToLower() == arrStr[i].ToLower())
-                     retValue = i;
-               }
+               if (searchStr == arrStr[i])
+                  retValue = i;
+            }
+            else
+            {
+               if (searchStr.ToLower() == arrStr[i].ToLower())
+                  retValue = i;
             }
          }
          return retValue;
@@ -158,7 +147,7 @@ namespace Crsky.Utility.Helper
       {
          if (!string.IsNullOrEmpty(sourceStr))
          {
-            if (sourceStr.IndexOf(splitStr) < 0)
+            if (sourceStr.IndexOf(splitStr, StringComparison.Ordinal) < 0)
             {
                string[] tmp = { sourceStr };
                return tmp;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     public class XmlHelper
     {
