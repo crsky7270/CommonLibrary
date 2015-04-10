@@ -16,13 +16,13 @@ namespace Crsky.Utility.Helper
    {
       #region 根据UTF-8编码获取字符串的字节长度
       /// <summary>
-      /// 根据UTF-8编码获取字符串的字节长度(1个汉字为2字节)
+      /// 根据Unicode编码获取字符串的字节长度(1个汉字为2字节)
       /// </summary>
       /// <param name="str">字符串</param>
       /// <returns>字符串的字节长度(1个汉字为2字节)，输入字符串IsNullOrEmpty，则返回0</returns>
       public static int GetLength(string str)
       {
-         return ValidationHelper.IsNullOrEmpty(str) ? 0 : Encoding.UTF8.GetByteCount(str);
+         return ValidationHelper.IsNullOrEmpty(str) ? 0 : Encoding.Unicode.GetByteCount(str);
       }
 
       #endregion
@@ -36,7 +36,8 @@ namespace Crsky.Utility.Helper
       /// <returns>指定字节长度的字符串</returns>
       public static string Substring(string str, int length)
       {
-         Byte[] tempStr = Encoding.UTF8.GetBytes(str);
+         if (length < 1) return string.Empty;
+         var tempStr = Encoding.UTF8.GetBytes(str);
          return tempStr.Length > length ? Encoding.UTF8.GetString(tempStr, 0, length) : str;
       }
 
@@ -116,9 +117,9 @@ namespace Crsky.Utility.Helper
       /// <returns>字符串在指定字符串数组中的位置, 如不存在则返回-1</returns>
       public static int GetIndexInArray(string searchStr, string[] arrStr, bool caseInsensetive)
       {
-         int retValue = -1;
+         var retValue = -1;
          if (string.IsNullOrEmpty(searchStr) || arrStr.Length <= 0) return retValue;
-         for (int i = 0; i < arrStr.Length; i++)
+         for (var i = 0; i < arrStr.Length; i++)
          {
             if (caseInsensetive)
             {
@@ -127,7 +128,7 @@ namespace Crsky.Utility.Helper
             }
             else
             {
-               if (searchStr.ToLower() == arrStr[i].ToLower())
+               if (String.Equals(searchStr, arrStr[i], StringComparison.CurrentCultureIgnoreCase))
                   retValue = i;
             }
          }
@@ -154,11 +155,9 @@ namespace Crsky.Utility.Helper
             }
             return Regex.Split(sourceStr, Regex.Escape(splitStr), RegexOptions.IgnoreCase);
          }
-         else
-         {
-            return new string[0] { };
-         }
+         return new string[0] { };
       }
+
       /// <summary>
       /// 分割字符串数组
       /// </summary>
@@ -168,18 +167,15 @@ namespace Crsky.Utility.Helper
       /// <returns></returns>
       public static string[] Split(string sourceStr, string splitStr, int count)
       {
-         string[] result = new string[count];
-
-         string[] splited = Split(sourceStr, splitStr);
-
-         for (int i = 0; i < count; i++)
+         var result = new string[count];
+         var splited = Split(sourceStr, splitStr);
+         for (var i = 0; i < count; i++)
          {
             if (i < splited.Length)
                result[i] = splited[i];
             else
                result[i] = string.Empty;
          }
-
          return result;
       }
       #endregion
