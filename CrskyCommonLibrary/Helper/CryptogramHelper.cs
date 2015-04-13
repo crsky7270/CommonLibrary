@@ -16,7 +16,7 @@ namespace Crsky.Utility.Helper
       /// <summary>
       /// 全局密钥(64位)
       /// </summary>
-      private static readonly string key = "lQa9_&skzly%!9fs2@*UNA($ck_^:)'aI9e.^2Lbx9,5lf!j+~Hz@^hakuJ^crOb";
+      private static readonly string Key = "lQa9_&skzly%!9fs2@*UNA($ck_^:)'aI9e.^2Lbx9,5lf!j+~Hz@^hakuJ^crOb";
       #endregion
 
       #region MD5加密字符串
@@ -95,7 +95,7 @@ namespace Crsky.Utility.Helper
          TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
          MD5CryptoServiceProvider hashMD5 = new MD5CryptoServiceProvider();
 
-         DES.Key = hashMD5.ComputeHash(Encoding.UTF8.GetBytes(key));
+         DES.Key = hashMD5.ComputeHash(Encoding.UTF8.GetBytes(Key));
          DES.Mode = CipherMode.ECB;
 
          ICryptoTransform DESEncrypt = DES.CreateEncryptor();
@@ -155,7 +155,7 @@ namespace Crsky.Utility.Helper
          TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
          MD5CryptoServiceProvider hashMD5 = new MD5CryptoServiceProvider();
 
-         DES.Key = hashMD5.ComputeHash(Encoding.UTF8.GetBytes(key));
+         DES.Key = hashMD5.ComputeHash(Encoding.UTF8.GetBytes(Key));
          DES.Mode = CipherMode.ECB;
 
          ICryptoTransform DESDecrypt = DES.CreateDecryptor();

@@ -21,17 +21,13 @@ namespace Crsky.Utility.Helper
       public static string RepairZero(string text, int limitedLength)
       {
          //补足0的字符串
-         string temp = "";
-
-         //补足0
-         for (int i = 0; i < limitedLength - text.Length; i++)
+         var temp = "";
+         for (var i = 0; i < limitedLength - text.Length; i++)
          {
-            temp += "0";
+            temp = string.Concat(temp, "0");
          }
-
          //连接text
-         temp += text;
-
+         temp = string.Concat(temp, text);
          //返回补足0的字符串
          return temp;
       }
@@ -712,19 +708,15 @@ namespace Crsky.Utility.Helper
       /// <returns>转换后的半角数字与字母</returns>
       public static string ConvertToHalfStr(string str)
       {
-         int index;
-         string retStr = str;
-         string fullStr = "１２３４５６７８９０ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
-         string halfStr = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
+         var retStr = str;
+         const string fullStr = "１２３４５６７８９０ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
+         const string halfStr = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
          if (!string.IsNullOrEmpty(str))
          {
             retStr = null;
-
-            foreach (char temp in str)
+            foreach (var temp in str)
             {
-               index = fullStr.IndexOf(temp);
-
+               var index = fullStr.IndexOf(temp);
                if (index < 0)
                {
                   retStr += temp.ToString();
