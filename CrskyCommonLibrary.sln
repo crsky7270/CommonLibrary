@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crsky.IOC", "Crsky.IOC\Crsky.IOC.csproj", "{08FCA0B8-FE49-40EC-BF5B-C387E3D8BC86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{FE07F236-18D7-469C-B015-2CA86F34DE3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{08FCA0B8-FE49-40EC-BF5B-C387E3D8BC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08FCA0B8-FE49-40EC-BF5B-C387E3D8BC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08FCA0B8-FE49-40EC-BF5B-C387E3D8BC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE07F236-18D7-469C-B015-2CA86F34DE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE07F236-18D7-469C-B015-2CA86F34DE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE07F236-18D7-469C-B015-2CA86F34DE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE07F236-18D7-469C-B015-2CA86F34DE3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

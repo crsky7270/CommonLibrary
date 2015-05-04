@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Crsky.Attributes;
 using Crsky.Utility;
 
 namespace Crsky.Utility.Helper
@@ -16,7 +18,41 @@ namespace Crsky.Utility.Helper
       /// <param name="dirPath">目录路径</param>
       public static void CreateNewFile(string dirPath)
       {
-         
+
+      }
+
+      /// <summary>
+      /// Create And Recover Txt File
+      /// </summary>
+      /// <param name="filePath">文件的完整路径</param>
+      public static void CreateTxtFile(string filePath)
+      {
+         var dirName = System.IO.Path.GetDirectoryName(filePath);
+         DirectoryHelper.CreateDirectory(dirName);
+         File.CreateText(filePath);
+      }
+
+      /// <summary>
+      /// Append Txt with the Standard Format
+      /// </summary>
+      public static List<string> GetAppendTxtFileBySeperator<T>(List<T> objectList, char seperator = '\t')
+      {
+         List<string> outPutString = new List<string>();
+         Dictionary<int, string> outPutDictionary = new Dictionary<int, string>();
+         foreach (var itm in objectList)
+         {
+            var propertyInfos = itm.GetType().GetProperties();
+            foreach (var prop in propertyInfos)
+            {
+               if (!Attribute.IsDefined(prop, typeof (TextOutPutAttributeAttribute))) continue;
+               var attr = Attribute.GetCustomAttribute(prop, typeof(TextOutPutAttributeAttribute)) as TextOutPutAttributeAttribute;
+               outPutDictionary.Add(attr.OrderIndex, prop.GetValue(itm).ToString());
+            }
+            var str = outPutDictionary.OrderBy(x => x.Key).Aggregate("", (current, rec) => current + (rec.Value + '\t'));
+            str = str.TrimEnd('\t');
+            outPutString.Add(str);
+         }
+         return outPutString;
       }
 
       #region 获取指定目录中的文件列表

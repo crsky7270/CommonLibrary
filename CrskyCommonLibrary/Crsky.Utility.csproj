@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\TextOutPutAttributeAttribute.cs" />
     <Compile Include="Helper\CommonHelper.cs">
       <SubType>Code</SubType>
     </Compile>
