@@ -32,29 +32,6 @@ namespace Crsky.Utility.Helper
          File.CreateText(filePath);
       }
 
-      /// <summary>
-      /// Append Txt with the Standard Format
-      /// </summary>
-      public static List<string> GetAppendTxtFileBySeperator<T>(List<T> objectList, char seperator = '\t')
-      {
-         List<string> outPutString = new List<string>();
-         Dictionary<int, string> outPutDictionary = new Dictionary<int, string>();
-         foreach (var itm in objectList)
-         {
-            var propertyInfos = itm.GetType().GetProperties();
-            foreach (var prop in propertyInfos)
-            {
-               if (!Attribute.IsDefined(prop, typeof (TextOutPutAttributeAttribute))) continue;
-               var attr = Attribute.GetCustomAttribute(prop, typeof(TextOutPutAttributeAttribute)) as TextOutPutAttributeAttribute;
-               outPutDictionary.Add(attr.OrderIndex, prop.GetValue(itm).ToString());
-            }
-            var str = outPutDictionary.OrderBy(x => x.Key).Aggregate("", (current, rec) => current + (rec.Value + '\t'));
-            str = str.TrimEnd('\t');
-            outPutString.Add(str);
-         }
-         return outPutString;
-      }
-
       #region 获取指定目录中的文件列表
       /// <summary>
       /// 获取指定目录中所有文件列表

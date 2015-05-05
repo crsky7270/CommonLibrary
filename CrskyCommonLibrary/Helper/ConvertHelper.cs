@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Crsky.Attributes;
 
 namespace Crsky.Utility.Helper
 {
@@ -24,10 +25,10 @@ namespace Crsky.Utility.Helper
          var temp = "";
          for (var i = 0; i < limitedLength - text.Length; i++)
          {
-            temp = string.Concat(temp, "0");
+            temp = String.Concat(temp, "0");
          }
          //连接text
-         temp = string.Concat(temp, text);
+         temp = String.Concat(temp, text);
          //返回补足0的字符串
          return temp;
       }
@@ -44,7 +45,7 @@ namespace Crsky.Utility.Helper
       {
          try
          {
-            int intValue = Convert.ToInt32(value, from);  //先转成10进制
+            int intValue = Convert.ToInt32(value, @from);  //先转成10进制
             string result = Convert.ToString(intValue, to);  //再转成目标进制
             if (to == 2)
             {
@@ -215,7 +216,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回0
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return 0;
             }
@@ -269,7 +270,7 @@ namespace Crsky.Utility.Helper
          //有效性验证
          if (data == null)
          {
-            return string.Empty;
+            return String.Empty;
          }
 
          return data.ToString();
@@ -289,7 +290,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回false
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return false;
             }
@@ -346,7 +347,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回0
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return 0;
             }
@@ -403,7 +404,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回0
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return 0;
             }
@@ -431,7 +432,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回0
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return 0;
             }
@@ -517,7 +518,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回0
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return 0;
             }
@@ -545,7 +546,7 @@ namespace Crsky.Utility.Helper
          try
          {
             //如果为空则返回0
-            if (ValidationHelper.IsNullOrEmpty<T>(data))
+            if (ValidationHelper.IsNullOrEmpty(data))
             {
                return 0;
             }
@@ -711,7 +712,7 @@ namespace Crsky.Utility.Helper
          var retStr = str;
          const string fullStr = "１２３４５６７８９０ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
          const string halfStr = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-         if (!string.IsNullOrEmpty(str))
+         if (!String.IsNullOrEmpty(str))
          {
             retStr = null;
             foreach (var temp in str)
@@ -730,5 +731,29 @@ namespace Crsky.Utility.Helper
          return retStr;
       }
       #endregion
+
+      /// <summary>
+      /// Append Txt with the Standard Format
+      /// 该方法必须配合TextOutPutAttributeAttribute标签共同使用
+      /// </summary>
+      public static List<string> GetAppendTxtFileBySeperator<T>(List<T> objectList, char seperator = '\t')
+      {
+         List<string> outPutString = new List<string>();
+         Dictionary<int, string> outPutDictionary = new Dictionary<int, string>();
+         foreach (var itm in objectList)
+         {
+            var propertyInfos = itm.GetType().GetProperties();
+            foreach (var prop in propertyInfos)
+            {
+               if (!Attribute.IsDefined(prop, typeof (TextOutPutAttributeAttribute))) continue;
+               var attr = Attribute.GetCustomAttribute(prop, typeof(TextOutPutAttributeAttribute)) as TextOutPutAttributeAttribute;
+               outPutDictionary.Add(attr.OrderIndex, prop.GetValue(itm).ToString());
+            }
+            var str = outPutDictionary.OrderBy(x => x.Key).Aggregate("", (current, rec) => current + (rec.Value + '\t'));
+            str = str.TrimEnd('\t');
+            outPutString.Add(str);
+         }
+         return outPutString;
+      }
    }
 }

@@ -31,7 +31,7 @@ namespace TestProject
 
          List<TestClass> testCls = new List<TestClass>();
          testCls.Add(new TestClass() { PropA = "A", PropB = 2, PropC = 3 });
-         FileHelper.GetAppendTxtFileBySeperator(testCls);
+         ConvertHelper.GetAppendTxtFileBySeperator(testCls);
       }
    }
 

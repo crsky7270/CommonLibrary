@@ -17,8 +17,14 @@ namespace UnitTestProject1
       {
          List<TestClass> testCls = new List<TestClass>();
          testCls.Add(new TestClass() { PropA = "A", PropB = 2, PropC = 3 });
-         var appendTxt = FileHelper.GetAppendTxtFileBySeperator(testCls);
+         var appendTxt = ConvertHelper.GetAppendTxtFileBySeperator(testCls);
          File.AppendAllLines(@"c:\test\12.txt", appendTxt, new UTF8Encoding(false));
+      }
+
+      [TestMethod]
+      public void TestCreateTxtFile()
+      {
+         FileHelper.CreateTxtFile(@"C:\test2\1.txt");
       }
    }
 
