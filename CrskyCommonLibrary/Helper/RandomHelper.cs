@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     /// <summary>
     /// 随机数相关

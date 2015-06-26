@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -54,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Crsky.IOC\Crsky.IOC.csproj">
+      <Project>{08fca0b8-fe49-40ec-bf5b-c387e3d8bc86}</Project>
+      <Name>Crsky.IOC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CrskyCommonLibrary\Crsky.Utility.csproj">
       <Project>{f74ed453-025a-4b9e-ac76-62ce40761ab9}</Project>
       <Name>Crsky.Utility</Name>

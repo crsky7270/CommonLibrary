@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     /// <summary>
     /// Static class with path related methods. Can be useful to combine url or to retrive the server root directory.

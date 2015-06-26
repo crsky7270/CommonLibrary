@@ -5,7 +5,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using Crsky.Utility.Helper;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     /// <summary>
     /// Javascript函数相关

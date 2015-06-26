@@ -6,7 +6,7 @@ using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Json;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     /// <summary>
     /// json扩展方法

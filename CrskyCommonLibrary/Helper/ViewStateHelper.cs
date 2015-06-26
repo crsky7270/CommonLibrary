@@ -15,7 +15,7 @@
 using System.IO;
 using System.IO.Compression;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     /// <summary>
     /// ViewState压缩与解压缩

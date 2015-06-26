@@ -19,7 +19,7 @@ using System.Collections;
 using System.Net;
 using System.IO;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     public static class WebHelper
     {

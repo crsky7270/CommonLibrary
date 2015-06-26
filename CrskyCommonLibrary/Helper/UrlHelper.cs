@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Text;
 
-namespace RuanYun.Utility.Helper
+namespace Crsky.Utility.Helper
 {
     /// <summary>
     /// URL相关
