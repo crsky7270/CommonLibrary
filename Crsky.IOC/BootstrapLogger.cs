@@ -4,6 +4,9 @@ using log4net;
 
 namespace Crsky.IoC
 {
+   /// <summary>
+   /// IOC Mapping Class
+   /// </summary>
     public class BootstrapLogger
     {
         public string Output { get { return Logger.ToString(); } }
