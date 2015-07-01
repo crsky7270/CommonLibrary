@@ -8,7 +8,7 @@ using Crsky.Attributes;
 namespace Crsky.Utility.Helper
 {
    /// <summary>
-   /// 转换助手
+   /// 转换类
    /// </summary>
    public sealed class ConvertHelper
    {

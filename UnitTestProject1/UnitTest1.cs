@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using Crsky.Caching.CouchBase;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Crsky.Utility;
@@ -8,7 +9,7 @@ using Crsky.Attributes;
 using System.Collections.Generic;
 using Crsky.Utility.Helper;
 using Crsky.IoC;
-
+using Crsky.Caching;
 namespace UnitTestProject1
 {
    [TestClass]
@@ -43,6 +44,23 @@ namespace UnitTestProject1
          myTry.GetSome("12");
 
       }
+      [TestMethod]
+      public void TestCouchbase()
+      {
+         var testClass = new TestClass() { PropA = "1", PropB = 1, PropC = 1.2 };
+         var testClass1 = new TestClass() { PropA = "2", PropB = 2, PropC = 2.2 };
+         var obj = new List<TestClass>();
+         obj.Add(testClass);
+         obj.Add(testClass1);
+
+         CouchbaseManager.Add<List<TestClass>>("key11", obj);
+
+         var dd = CouchbaseManager.Get<List<TestClass>>("key11");
+
+         //CouchbaseManager.SectionName = "bucketV2";
+         CouchbaseManager.ResetCouchClientBySectionName("bucketV2");
+         CouchbaseManager.Add<List<TestClass>>("key12", obj);
+      }
    }
 
    public interface ITry
@@ -56,7 +74,7 @@ namespace UnitTestProject1
    {
       public Try()
       {
-         
+
       }
 
       public void Do()
@@ -73,6 +91,7 @@ namespace UnitTestProject1
       }
    }
 
+   [Serializable]
    public class TestClass
    {
       [TextOutPutAttribute(2)]
