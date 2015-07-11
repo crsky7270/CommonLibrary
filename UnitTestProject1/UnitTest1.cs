@@ -13,7 +13,7 @@ using Crsky.Caching;
 namespace UnitTestProject1
 {
     /// <summary>
-    /// Test Class
+    /// Test Class OK
     /// </summary>
    [TestClass]
    public class UnitTest1
