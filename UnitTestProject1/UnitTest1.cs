@@ -12,6 +12,9 @@ using Crsky.IoC;
 using Crsky.Caching;
 namespace UnitTestProject1
 {
+    /// <summary>
+    /// Test Class
+    /// </summary>
    [TestClass]
    public class UnitTest1
    {
