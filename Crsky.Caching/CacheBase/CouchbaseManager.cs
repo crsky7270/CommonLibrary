@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace Crsky.Caching.CouchBase
 {
+   /// <summary>
+   /// Initialize Couchbase Client Instance
+   /// </summary>
    public static class CouchbaseManager
    {
       private static readonly long DefaultExpireTime = 60;// 默认超时时间(分钟计)
