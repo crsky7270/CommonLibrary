@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Crsky.Caching.CouchBase;
 using Microsoft.Practices.ServiceLocation;
@@ -12,9 +13,9 @@ using Crsky.IoC;
 using Crsky.Caching;
 namespace UnitTestProject1
 {
-    /// <summary>
-    /// Test Class OK
-    /// </summary>
+   /// <summary>
+   /// Test Class OK
+   /// </summary>
    [TestClass]
    public class UnitTest1
    {
@@ -40,13 +41,25 @@ namespace UnitTestProject1
          locator.UseAsDefault();
          locator.Map(() => ServiceLocator.Current);
          locator.Map<ITry, Try>();
+         locator.Map<ITryBase, TryBase>();
          locator.Load();
 
          var myTry = ServiceLocator.Current.GetInstance<ITry>();
-         myTry.Do();
+         var str = "Hello world!";
+         var result = myTry.DoSome(str);
          myTry.GetSome("12");
-
       }
+
+      [TestMethod]
+      public void TestNoIOC()
+      {
+         TryBase tryBase = new TryBase();
+         Try myTry = new Try(tryBase);
+         var str = myTry.DoSome("hello");
+      }
+
+
+
       [TestMethod]
       public void TestCouchbase()
       {
@@ -56,6 +69,7 @@ namespace UnitTestProject1
          obj.Add(testClass);
          obj.Add(testClass1);
 
+         CouchbaseManager.ResetCouchClientBySectionName("couchbase");
          CouchbaseManager.Add<List<TestClass>>("key11", obj);
 
          var dd = CouchbaseManager.Get<List<TestClass>>("key11");
@@ -68,21 +82,23 @@ namespace UnitTestProject1
 
    public interface ITry
    {
-      void Do();
+      string DoSome(string str);
 
       string GetSome(string str);
    }
 
    public class Try : ITry
    {
-      public Try()
+      public readonly ITryBase TryBase;
+      public Try(ITryBase tryBase)
       {
-
+         TryBase = tryBase;
       }
 
-      public void Do()
+      public string DoSome(string str)
       {
-         Console.WriteLine("Do Some!");
+         return TryBase.DoSome(str) + "\r\n" + string.Format("Try Say:{0}", str);
+         //Console.WriteLine("Do Some!");
          //throw new NotImplementedException();
       }
 
@@ -91,6 +107,19 @@ namespace UnitTestProject1
          Console.WriteLine("get Some!");
          return "KO";
          //throw new NotImplementedException();
+      }
+   }
+
+   public interface ITryBase
+   {
+      string DoSome(string str);
+   }
+
+   public class TryBase : ITryBase
+   {
+      public string DoSome(string str)
+      {
+         return "TryBase Say:" + str;
       }
    }
 
