@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crsky.DBUtility", "Crsky.DB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crsky.Caching", "Crsky.Caching\Crsky.Caching.csproj", "{28C4A467-8B64-4FB4-BE9E-0C8C2EBE3653}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crsky.Logger", "Crsky.Logger\Crsky.Logger.csproj", "{ED29AC9F-CC7E-4E85-80F3-4894013E0D35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{28C4A467-8B64-4FB4-BE9E-0C8C2EBE3653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28C4A467-8B64-4FB4-BE9E-0C8C2EBE3653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28C4A467-8B64-4FB4-BE9E-0C8C2EBE3653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED29AC9F-CC7E-4E85-80F3-4894013E0D35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED29AC9F-CC7E-4E85-80F3-4894013E0D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED29AC9F-CC7E-4E85-80F3-4894013E0D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED29AC9F-CC7E-4E85-80F3-4894013E0D35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
